@@ -12,6 +12,10 @@ export class Highlight2 implements OnInit{
   ngOnInit(): void {
     this.bgc.set(this.out);
   }
+  constructor() {
+    console.log('in appHighliht2');
+
+  }
   @Input()
   in = 'yellow';
   @Input()

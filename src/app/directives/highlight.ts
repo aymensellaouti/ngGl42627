@@ -1,12 +1,16 @@
 import { Directive, HostBinding, HostListener, Input, OnInit } from '@angular/core';
 
 @Directive({
-  selector: '[appHighlight]',
+  selector: 'p[appHighlight]',
 })
-export class Highlight implements OnInit{
+export class Highlight implements OnInit {
   ngOnInit(): void {
     this.bgc = this.out;
   }
+  constructor() {
+    console.log('in appHighliht');
+  }
+
   @Input()
   in = 'yellow';
   @Input()
@@ -18,11 +22,11 @@ export class Highlight implements OnInit{
   bgc = this.out;
 
   @HostListener('mouseenter')
-  onMouseEnter()  {
+  onMouseEnter() {
     this.bgc = this.in;
   }
   @HostListener('mouseleave')
-  onMouseLeave()  {
+  onMouseLeave() {
     this.bgc = this.out;
   }
 }
