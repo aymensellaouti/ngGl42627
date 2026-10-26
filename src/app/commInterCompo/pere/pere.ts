@@ -6,9 +6,10 @@ import { FormsModule } from '@angular/forms';
 import { UpperCasePipe } from '@angular/common';
 import { Logger } from '../../services/logger';
 import { ToastrService } from 'ngx-toastr';
+import { TestHttp } from '../../http/test-http/test-http';
 
 @Component({
-  imports: [Fils, Highlight, Highlight2, FormsModule, UpperCasePipe],
+  imports: [Fils, Highlight, Highlight2, FormsModule, UpperCasePipe, TestHttp],
   selector: 'app-pere',
   styleUrl: './pere.css',
   templateUrl: './pere.html',
