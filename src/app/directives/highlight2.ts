@@ -1,4 +1,4 @@
-import { Directive, Input, OnInit, signal } from '@angular/core';
+import { computed, Directive, effect, input, Input, linkedSignal, OnInit, signal } from '@angular/core';
 
 @Directive({
   selector: '[appHighlight2]',
@@ -9,28 +9,29 @@ import { Directive, Input, OnInit, signal } from '@angular/core';
   }
 })
 export class Highlight2 implements OnInit{
-  ngOnInit(): void {
-    this.bgc.set(this.out);
-  }
   constructor() {
     console.log('in appHighliht2');
-
   }
-  @Input()
-  in = 'yellow';
-  @Input()
-  out = 'red';
+  ngOnInit(): void {
+   // this.bgc.set(this.out());
+  }
+  // initBgcEffect = effect(() => {
+  //   this.bgc.set(this.out())
+  // });
+  in = input('yellow');
+
+  out = input('red');
   // HostBinding tkhalini je défini l'apparence eli n7anb ngeriha
   // Rani je gére le backgroundColor
   // Wel value du backgrouncColor heya el bgc
   // @HostBinding('style.backgroundColor')
-  bgc = signal(this.out);
+  bgc = linkedSignal(() => this.out());
   // @HostListener('mouseenter')
   onMouseEnter()  {
-    this.bgc.set(this.in);
+    this.bgc.set(this.in());
   }
   // @HostListener('mouseleave')
   onMouseLeave()  {
-    this.bgc.set(this.out);
+    this.bgc.set(this.out());
   }
 }

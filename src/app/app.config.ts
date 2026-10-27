@@ -1,9 +1,10 @@
 import { ApplicationConfig, importProvidersFrom, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter, withComponentInputBinding, withDebugTracing } from '@angular/router';
+import { PreloadAllModules, provideRouter, withComponentInputBinding, withDebugTracing, withPreloading } from '@angular/router';
 import { routes } from './app.routes';
 import { provideToastr } from 'ngx-toastr';
 import { provideSignalFormsConfig } from '@angular/forms/signals';
 import { NG_STATUS_CLASSES } from '@angular/forms/signals/compat';
+import { CustomPreloadingStrategy } from './preloadingStrategy/custom.preloading-strategy';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -11,11 +12,12 @@ export const appConfig: ApplicationConfig = {
     provideRouter(
       routes,
       // withDebugTracing(),
-      withComponentInputBinding()
+      withComponentInputBinding(),
+      withPreloading(CustomPreloadingStrategy),
     ),
     provideToastr(),
     provideSignalFormsConfig({
-      classes: NG_STATUS_CLASSES
-    })
+      classes: NG_STATUS_CLASSES,
+    }),
   ],
 };

@@ -5,10 +5,12 @@ import { rxResource } from "@angular/core/rxjs-interop";
 @Service()
 export class HttpService {
   http = inject(HttpClient);
-  cvsResource = rxResource({
+  getCvsResource() {
+    return rxResource({
     stream: () => this.http.get<[]>('https://apilb.tridevs.net/api/personnes'),
   });
-  cvsHttpResource = httpResource(
-    () => 'https://apilb.tridevs.net/api/personnes'
-  );
+  }
+  getCvsHttpResource() {
+    return httpResource(() => 'https://apilb.tridevs.net/api/personnes');;
+  }
 }

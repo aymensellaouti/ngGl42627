@@ -1,5 +1,5 @@
 <div appHighlight>pere works!</div>
-<p [in]="'gold'"  [out]="'pink'" appHighlight>pere works!</p>
+<p [in]="'gold'"  [out]="'pink'" appHighlight2>pere works!</p>
 <p [in]="'green'"  [out]="'blue'" appHighlight2>pere works!</p>
 
 <app-fils (sendMessageToDad)="handleSonEvent($event)" [message]="'Bara echri el khobz'" />
@@ -7,3 +7,9 @@
 <input type="text" [(ngModel)]="testPipe">
 with pipe : {{testPipe() | uppercase}}
 <p>without pipe {{testPipe() }}</p>
+
+title <input [(ngModel)]="title" type="text" class="form-control">
+slug <input [(ngModel)]="slug" type="text" class="form-control">
+slug <input [(ngModel)]="slug2" type="text" class="form-control">
+
+Le slug est :  {{slug()}}

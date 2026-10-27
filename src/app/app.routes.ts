@@ -1,16 +1,30 @@
 import { Routes } from '@angular/router';
-import { Pere } from './commInterCompo/pere/pere';
-import { Fils } from './commInterCompo/fils/fils';
-import { Som } from './components/som/som';
-import { First } from './first/first';
-import { TestForm } from './forms/test-form/test-form';
 
 export const routes: Routes = [
-  {path: '', component: Pere},
-  {path: 'fils', component: Fils, children: [
-    {path: 'som', component: Som }
-  ] },
-  {path: 'som', component: Som },
-  {path: 'form', component: TestForm },
-  {path: 'hello/:name', component: First},
+  {
+    path: '',
+    loadComponent: () => import('./commInterCompo/pere/pere').then((m) => m.Pere),
+  },
+  {
+    path: 'fils',
+    loadComponent: () => import('./commInterCompo/fils/fils').then((m) => m.Fils),
+    children: [
+      { path: 'som', loadComponent: () => import('./components/som/som').then((m) => m.Som) },
+    ],
+  },
+  {
+    path: 'som',
+    data: {
+      preload: true,
+    },
+    loadComponent: () => import('./components/som/som').then((m) => m.Som),
+  },
+  {
+    path: 'form',
+    data: {
+      preload: true,
+    },
+    loadComponent: () => import('./forms/test-form/test-form').then((m) => m.TestForm),
+  },
+  { path: 'hello/:name', loadComponent: () => import('./first/first').then((m) => m.First) },
 ];

@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, linkedSignal, signal, WritableSignal } from '@angular/core';
 import { Fils } from '../fils/fils';
 import { Highlight } from '../../directives/highlight';
 import { Highlight2 } from '../../directives/highlight2';
@@ -18,11 +18,29 @@ export class Pere {
   testPipe = signal('cc');
   loggerService = inject(Logger);
   toastr = inject(ToastrService);
+
+  title = signal('');
+  slug = linkedSignal(() => slugify(this.title()));
+  slug2 =linkedSignal({
+    source: () => ({
+      // Les signaux dont dépend le linkedSignal
+      title: this.title()
+    }),
+    computation:(source, previous) => {
+      console.log({source, previous});
+      return slugify(source.title)
+    }
+  })
+
   constructor() {
     this.loggerService.log('inPereComponent');
-    this.toastr.info('cc GL4 :D')
+    this.toastr.info('cc GL4 :D');
   }
   handleSonEvent(message: string) {
     confirm(message);
   }
+
+}
+function slugify(value: string) {
+  return value.toLowerCase().replaceAll(' ', '-');
 }
