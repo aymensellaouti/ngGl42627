@@ -13,4 +13,8 @@ export class HttpService {
   getCvsHttpResource() {
     return httpResource(() => 'https://apilb.tridevs.net/api/personnes');;
   }
+
+  getCvs() {
+    return this.http.get('https://apilb.tridevs.net/api/personnes');
+  }
 }

@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { cvsResolverResolver } from './cvs/cvs-resolver-resolver';
 
 export const routes: Routes = [
   {
@@ -8,6 +9,13 @@ export const routes: Routes = [
   {
     path: 'defer',
     loadComponent: () => import('./defer/defer/defer.component').then((m) => m.DeferComponent),
+  },
+  {
+    path: 'cvs',
+    resolve: {
+      cvs: cvsResolverResolver,
+    },
+    loadComponent: () => import('./http/test-http/test-http').then((m) => m.TestHttp),
   },
   {
     path: 'fils',

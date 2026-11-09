@@ -1,6 +1,6 @@
 import { JsonPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { rxResource, toSignal } from '@angular/core/rxjs-interop';
 import { tap } from 'rxjs';
 import { HttpService } from '../service/http.service';
@@ -13,6 +13,8 @@ import { HttpService } from '../service/http.service';
 })
 export class TestHttp {
   httpService = inject(HttpService);
+  //cvsResource = this.httpService.getCvsResource();
+  cvs = input();
   //cvsResource = rxResource({
   //  stream: () => this.http.get<[]>('https://apilb.tridevs.net/api/personnes'),
   //});
@@ -29,5 +31,6 @@ export class TestHttp {
     //     console.log(cvs);
     //   },
     // });
+    //this.httpService.getCvsResource();
   }
 }
