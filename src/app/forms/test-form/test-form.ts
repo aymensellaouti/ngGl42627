@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { form, FormField, maxLength, required } from '@angular/forms/signals';
+import { form, FormField, maxLength, required, FormRoot } from '@angular/forms/signals';
 import { TestHttp } from '../../http/test-http/test-http';
 
 export interface Section {
@@ -8,7 +8,7 @@ export interface Section {
 }
 
 @Component({
-  imports: [FormField, TestHttp],
+  imports: [FormField, TestHttp, FormRoot],
   selector: 'app-test-form',
   styleUrl: './test-form.css',
   templateUrl: './test-form.html',

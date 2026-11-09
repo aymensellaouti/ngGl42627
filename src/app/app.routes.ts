@@ -6,6 +6,10 @@ export const routes: Routes = [
     loadComponent: () => import('./commInterCompo/pere/pere').then((m) => m.Pere),
   },
   {
+    path: 'defer',
+    loadComponent: () => import('./defer/defer/defer.component').then((m) => m.DeferComponent),
+  },
+  {
     path: 'fils',
     loadComponent: () => import('./commInterCompo/fils/fils').then((m) => m.Fils),
     children: [

@@ -1,6 +1,6 @@
 <p (click)="showForm()">test-form works!</p>
 
-<form >
+<form [formRoot]="sectionForm">
   name <input [formField]="sectionForm.name" class="form-control" type="text">
   <!-- {{sectionForm.name().errors()[0].message ?? ''}} -->
   level <input [formField]="sectionForm.level" class="form-control" type="number">
